@@ -27,7 +27,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Next"/>
                                 <connections>
-                                    <segue destination="yks-6g-hvf" kind="presentation" id="AaN-V0-HAg"/>
+                                    <segue destination="yks-6g-hvf" kind="show" id="8Kb-L7-SqC"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -59,14 +59,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="unwind"/>
                                 <connections>
-                                    <action selector="unwindToVC:" destination="yks-6g-hvf" eventType="touchUpInside" id="9nV-ul-Wje"/>
-                                    <segue destination="K76-mC-y1C" kind="unwind" unwindAction="unwindToVC:" id="6Pb-PF-tnO"/>
+                                    <segue destination="K76-mC-y1C" kind="unwind" unwindAction="unwindToVC:" id="zr2-fc-z48"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="zIM-xp-JSj"/>
                     </view>
+                    <navigationItem key="navigationItem" id="juw-qe-7yL"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jXq-2s-Mog" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="K76-mC-y1C" userLabel="Exit" sceneMemberID="exit"/>
