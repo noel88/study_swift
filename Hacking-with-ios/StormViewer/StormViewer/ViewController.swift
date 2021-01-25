@@ -27,7 +27,10 @@ class ViewController: UITableViewController {
                 pictures.append(item)
             }
         }
+       
     }
+    
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pictures.count
