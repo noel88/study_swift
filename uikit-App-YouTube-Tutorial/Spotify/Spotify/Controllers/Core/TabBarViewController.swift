@@ -38,6 +38,14 @@ class TabBarViewController: UITabBarController {
         nav2.navigationBar.prefersLargeTitles = true
         nav3.navigationBar.prefersLargeTitles = true
         
+        
+        // Tabbar 하나만 나올수 있도록 설정하는 방법.
+//        if AuthManager.shared.isSignedIn {
+//            setViewControllers([nav1, nav2, nav3], animated: false)
+//        } else {
+//            setViewControllers([nav1, nav2], animated: false)
+//        }
+        
         setViewControllers([nav1, nav2, nav3], animated: false)
     }
     
