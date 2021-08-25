@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -127,7 +128,43 @@
                             <outlet property="delegate" destination="inN-g4-P0E" id="mZL-U9-xsi"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem systemItem="flexibleSpace" id="5r0-9D-imY">
+                            <color key="tintColor" systemColor="secondaryLabelColor"/>
+                        </barButtonItem>
+                        <barButtonItem title="Title" id="TfI-WN-Bsb">
+                            <color key="tintColor" systemColor="secondaryLabelColor"/>
+                            <connections>
+                                <action selector="sortByTitle:" destination="inN-g4-P0E" id="pE2-jX-lpE"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="flexibleSpace" id="X28-qo-1Co">
+                            <color key="tintColor" systemColor="secondaryLabelColor"/>
+                        </barButtonItem>
+                        <barButtonItem title="Author" id="imh-BS-41g">
+                            <color key="tintColor" systemColor="secondaryLabelColor"/>
+                            <connections>
+                                <action selector="sortByAuthor:" destination="inN-g4-P0E" id="oI1-fz-Ue7"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="flexibleSpace" id="x1y-WS-AIB">
+                            <color key="tintColor" systemColor="secondaryLabelColor"/>
+                        </barButtonItem>
+                        <barButtonItem title="Read Me!" id="L1A-Gm-Buv">
+                            <color key="tintColor" name="ReadMe Tint Color"/>
+                            <connections>
+                                <action selector="sortByReadMe:" destination="inN-g4-P0E" id="yLS-U8-7Zh"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem systemItem="flexibleSpace" id="563-8W-YRE">
+                            <color key="tintColor" systemColor="secondaryLabelColor"/>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="My Library" id="y0g-91-fmE"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outletCollection property="sortButtons" destination="L1A-Gm-Buv" collectionClass="NSMutableArray" id="NHr-tc-WyP"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KzO-E5-ZOn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -136,7 +173,7 @@
         <!--Detail View Controller-->
         <scene sceneID="vCn-T5-GhX">
             <objects>
-                <tableViewController id="NYK-Id-vGT" customClass="DetailViewController" customModule="ReadMe" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="NYK-Id-vGT" customClass="DetailViewController" customModule="ReadMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Y6e-1A-qzC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -162,6 +199,9 @@
                                                             <state key="normal" image="bookmark.fill" catalog="system">
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="48"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="toggleReadMe" destination="NYK-Id-vGT" eventType="touchUpInside" id="HqC-8a-fjE"/>
+                                                            </connections>
                                                         </button>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vrQ-oE-Qkn">
                                                             <rect key="frame" x="59.5" y="0.0" width="314.5" height="35"/>
@@ -275,10 +315,17 @@
                             <outlet property="delegate" destination="NYK-Id-vGT" id="QIx-Xm-CVC"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="lxG-Tp-o7H"/>
+                    <navigationItem key="navigationItem" id="lxG-Tp-o7H">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="zQU-Be-1O6">
+                            <connections>
+                                <action selector="saveChange" destination="NYK-Id-vGT" id="CtG-GC-LuG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="authorLabel" destination="gm2-7x-oPn" id="sds-D8-HbJ"/>
                         <outlet property="imageView" destination="l2g-3f-ri7" id="kx8-F8-qMm"/>
+                        <outlet property="readMeButton" destination="50X-UE-EXG" id="Wuz-8A-WeK"/>
                         <outlet property="reviewTextView" destination="6Qe-8c-zC6" id="REv-6n-zO8"/>
                         <outlet property="titleLabel" destination="BZU-6c-RL4" id="dBq-aS-cI8"/>
                     </connections>
@@ -290,7 +337,7 @@
         <!--New Book View Controller-->
         <scene sceneID="pke-Jq-Wkg">
             <objects>
-                <tableViewController id="QNw-4h-1x6" customClass="NewBookViewController" customModule="ReadMe" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="QNw-4h-1x6" customClass="NewBookViewController" customModule="ReadMe" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ecm-ZA-4FD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -411,7 +458,18 @@
                             <outlet property="delegate" destination="QNw-4h-1x6" id="2J1-wp-O8b"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="74T-oF-uLB"/>
+                    <navigationItem key="navigationItem" id="74T-oF-uLB">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="OSS-e8-MgA">
+                            <connections>
+                                <action selector="cancel" destination="QNw-4h-1x6" id="V4v-jE-oKG"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="OPS-pV-XvF">
+                            <connections>
+                                <action selector="saveNewBook" destination="QNw-4h-1x6" id="Jsb-WL-cmC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="authorTextField" destination="ZFY-yv-ZDR" id="ETw-NL-YVx"/>
                         <outlet property="bookImageView" destination="J7o-mY-YDh" id="g17-pd-KwQ"/>
@@ -425,13 +483,17 @@
         <!--Navigation Controller-->
         <scene sceneID="cI1-z7-Klz">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lzG-yg-f8Z" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="lzG-yg-f8Z" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bn1-Ch-KiN">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="w3L-Ni-VSb">
+                        <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="inN-g4-P0E" kind="relationship" relationship="rootViewController" id="39g-W9-eHV"/>
                     </connections>
@@ -454,6 +516,9 @@
         </systemColor>
         <systemColor name="placeholderTextColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

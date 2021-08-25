@@ -7,4 +7,9 @@ class BookCell: UITableViewCell {
     
     @IBOutlet var readMeBookmark: UIImageView!
     @IBOutlet var bookThumbnail: UIImageView!
+    
+    override func prepareForReuse() {
+        reviewLabel.text = nil
+        reviewLabel.isHidden = true
+    }
 }

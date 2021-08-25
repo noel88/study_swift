@@ -8,8 +8,20 @@
 import UIKit
 
 class DetailViewController: UITableViewController {
-    let book: Book
+    var book: Book
     
+    @IBOutlet var readMeButton: UIButton!
+    
+    @IBAction func toggleReadMe() {
+        book.readMe.toggle()
+        let image = book.readMe ? LibrarySymbol.bookmarkFill.image : LibrarySymbol.bookmark.image
+        readMeButton.setImage(image, for: .normal)
+    }
+    
+    @IBAction func saveChange() {
+        Library.update(book: book)
+        navigationController?.popViewController(animated: true)
+    }
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var authorLabel: UILabel!
@@ -26,7 +38,7 @@ class DetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageView.image = book.image
+        imageView.image = book.image ?? LibrarySymbol.letterSquare(letter: book.title.first).image
         imageView.layer.cornerRadius = 16
         titleLabel.text = book.title
         authorLabel.text = book.author
@@ -34,6 +46,8 @@ class DetailViewController: UITableViewController {
         if let review = book.review {
             reviewTextView.text = review
         }
+        let image = book.readMe ? LibrarySymbol.bookmarkFill.image : LibrarySymbol.bookmark.image
+        readMeButton.setImage(image, for: .normal)
         reviewTextView.addDoneButton()
     }
     
@@ -53,14 +67,16 @@ extension DetailViewController: UIImagePickerControllerDelegate, UINavigationCon
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let selectedImage = info[.editedImage] as? UIImage else { return }
         imageView.image = selectedImage
-        Library.saveImage(selectedImage, forBook: book)
+        //Library.saveImage(selectedImage, forBook: book)
+        book.image = selectedImage
         dismiss(animated: true)
     }
 }
 
 extension DetailViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
-        textView.resignFirstResponder()
+        book.review = textView.text
+//        textView.resignFirstResponder()
     }
 }
 
