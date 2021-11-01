@@ -41,7 +41,8 @@ struct ContentView: View {
                 Text("Hit me")
             }
             .alert(isPresented: $alertIsVisible, content: {
-                return Alert(title: Text("Hello there!"), message: Text("The slider's value is \(self.sliderValue)"), dismissButton: .default(Text("Awesome!")))
+                var roundedValue: Int = Int(self.sliderValue)
+                return Alert(title: Text("Hello there!"), message: Text("The slider's value is \(self.sliderValue), rounded Value is \(roundedValue)."), dismissButton: .default(Text("Awesome!")))
             })
         }
     }
