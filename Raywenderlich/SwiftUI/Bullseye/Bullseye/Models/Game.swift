@@ -7,9 +7,8 @@
 
 import Foundation
 
-
-var target: Int = Int.random(in: 1...100)
 struct Game {
+    var target: Int = Int.random(in: 1...100)
     var score: Int = 0
     var round: Int = 1
     

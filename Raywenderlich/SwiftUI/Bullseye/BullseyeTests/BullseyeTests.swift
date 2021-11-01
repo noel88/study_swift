@@ -22,10 +22,18 @@ class BullseyeTests: XCTestCase {
         game = nil
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        XCTAssertEqual(game.points(sliderValue: 50), 999)
+    func testScorePositive() {
+        var guess = game.target + 5
+        var score = game.points(sliderValue: guess)
+        
+        XCTAssertEqual(score, 95)
+    }
+    
+    func testScoreNegative() {
+        var guess = game.target - 5
+        var score = game.points(sliderValue: guess)
+        
+        XCTAssertEqual(score, 95)
     }
 
 }
