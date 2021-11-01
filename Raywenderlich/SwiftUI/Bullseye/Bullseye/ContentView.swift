@@ -12,7 +12,11 @@ struct ContentView: View {
         VStack {
             VStack {
                 Text("🎯🎯🎯\nPUT THER BULLSEYE AS CLOSE AS YOU CAN TO")
-                    .padding()
+                    .bold()
+                    .kerning(2.0)
+                    .multilineTextAlignment(.center)
+                    .lineSpacing(4.0)
+                    .font(.footnote)
                 Text("89")
             }
             HStack {
@@ -30,6 +34,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environment(\.sizeCategory, .extraLarge)
         ContentView()
             .previewLayout(.fixed(width: 568, height: 320))
     }
