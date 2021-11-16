@@ -24,6 +24,7 @@ struct ContentView: View {
                         .font(.headline)
                         .foregroundColor(.white)
                 }
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100)
                 .padding(40)
                 .background(.purple)
                 .cornerRadius(10)
@@ -39,10 +40,12 @@ struct ContentView: View {
                         .font(.headline)
                         .foregroundColor(.gray)
                 }
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100)
                 .padding(40)
                 .background(Color(red: 240/255, green: 240/255, blue: 240/255))
                 .cornerRadius(10)
             }
+            .padding(.horizontal)
         }
     }
 }
