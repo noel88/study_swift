@@ -35,6 +35,8 @@ struct ContentView: View {
                 CardView(image: "natural-language-api", category: "iOS", heading: "What's New in Natural Language API", author: "Sai Kambampati")
                     .frame(width: 300)
             }
+            .layoutPriority(200)
+            Spacer()
         }
     }
 }
