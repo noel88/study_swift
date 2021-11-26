@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ConversationView: View {
+    
+    @State var isShowingNewMessageView = false
+    
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             
@@ -16,12 +19,18 @@ struct ConversationView: View {
                 //LazyVStack는 콘텐츠가 뷰를 로드하고, 너비가 유연함. VStack은 스크롤을 하기전부터 전부 로드한다.
                 VStack {
                     ForEach(0..<10) { _ in
-                        ConversationCell()
+                        NavigationLink(
+                            destination: Text("Chat View"),
+                            label: {
+                                ConversationCell()
+                            }
+                        )
                     }
                 }
+                .padding()
             }
             
-            Button(action: {}, label: {
+            Button(action: { self.isShowingNewMessageView.toggle() }, label: {
                 Image(systemName: "envelope")
                     .resizable()
                     .scaledToFit()
@@ -32,6 +41,9 @@ struct ConversationView: View {
                 .foregroundStyle(.white)
                 .clipShape(Circle())
                 .padding()
+                .sheet(isPresented: $isShowingNewMessageView, content: {
+                    SearchView()
+                })
         }
     }
 }

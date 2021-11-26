@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ConversationCell: View {
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             HStack(spacing: 12) {
                 Image("venom-10")
                     .resizable()
@@ -27,7 +27,10 @@ struct ConversationCell: View {
                         .lineLimit(2)
                     
                 }
+                .foregroundColor(.black)
                 .padding(.trailing)
+                
+                Spacer()
             }
             Divider()
         }
